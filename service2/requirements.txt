@@ -1,4 +1,9 @@
-flask
-flask-testing
-pytest
-pytest-cov
+Flask==1.1.2
+Flask-SQLAlchemy==2.4.4
+Flask-Testing==0.8.1
+Jinja2==2.11.3
+PyMySQL==1.0.2
+pytest==6.2.2
+pytest-cov==2.11.1
+requests==2.25.1
+SQLAlchemy==1.3.23
