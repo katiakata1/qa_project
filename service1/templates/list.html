@@ -3,7 +3,15 @@
     
 <body>
     <h1>Hey</h1>
-
+    <h2>This is your list of drinks you already had</h2>
+    {% for list in lists %}
+	<div>
+		<p>{{ list.volume }}l of <b>{{ list.spirit }}</b> with <b>{{ list.mixer }}</b></p>
+	</div>
+{% endfor %}
+    <br>
+    <h2>Drink responsibly</h2>
+    <h3>And why you haven't invited me???</h3>
 </body>
 
 </html>
