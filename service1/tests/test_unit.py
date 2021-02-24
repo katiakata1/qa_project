@@ -2,11 +2,38 @@ from unittest.mock import patch
 from flask import url_for
 from flask_testing import TestCase
 
-from app import app
+from app import app, db, Lists
 
 class TestBase(TestCase):
     def create_app(self):
+
+        app.config.update(SQLALCHEMY_DATABASE_URI="sqlite:///",
+                SECRET_KEY='IT_IS_A_SECRET_KEY',
+                DEBUG=True
+                )
         return app
+
+    def setUp(self):
+        db.session.commit()
+        db.drop_all()
+        db.create_all()
+
+        # Creating a test list
+        sample1 = Lists(
+            spirit = "Vodka",
+            volume = "0.33",
+            mixer = "Orange Juice",
+        )
+
+        # Save list to db
+        db.session.add(sample1)
+        db.session.commit()
+
+    def tearDown(self):
+
+        db.session.remove()
+        db.drop_all()
+
 
 class TestResponse(TestBase):
 
@@ -24,9 +51,11 @@ class TestResponse(TestBase):
 
                     response = self.client.get(url_for("index"))
                     self.assertEqual(response.status_code, 200)
-                    self.assertIn(b'Have a Vodka with Orange Juice', response.data)
+                    self.assertIn(b'Have a <b>Vodka</b> with <b>Orange Juice</b>', response.data)
 
+    def test_volume_on_page(self):
         with patch("requests.get") as e:
                 e.return_value.text = "0.33"
-                response = self.client.get(url_for("index"))
+                response = self.client.get(url_for("list"))
                 self.assertEqual(response.status_code, 200)
+                self.assertIn(b'0.33l of <b>Vodka</b> with <b>Orange Juice</b>', response.data)
