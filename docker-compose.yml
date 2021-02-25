@@ -1,9 +1,8 @@
 version: "3.8"
 services:
   database:
+    container_name: database
     build: ./service5
-    container_name: service5
-    image: mysql
     ports: 
     - target: 3306
       published: 3306
@@ -22,6 +21,7 @@ services:
     - target: 5000
       published: 5000
       protocol: tcp
+
 
   service2:
     container_name: service2
@@ -47,18 +47,23 @@ services:
       published: 5004
       protocol: tcp
 
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+    - target: 80
+      published: 80
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: ./service6/nginx.conf
+      target: /etc/nginx/nginx.conf
+    depends_on:
+    - service1
+
 volumes:
   lists-volume:  
 
-
-  # nginx:
-  #   container_name: nginx
-  #   image: nginx:latest
-  #   container_name: nginx
-  #   ports:
-  #   - target: 80
-  #     published: 80
-  #     protocol: tcp
 
 
 
