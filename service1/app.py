@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@34.83.154.195/lists'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@service5/lists'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
@@ -18,9 +18,9 @@ class Lists(db.Model):
 
 @app.route('/', methods=['GET'])
 def index():
-    spirit = requests.get("http://localhost:5001/spirit")
-    volume = requests.get("http://localhost:5002/volume")
-    mixer = requests.post("http://localhost:5003/mixer", data = spirit)
+    spirit = requests.get("http://service2:5001/spirit")
+    volume = requests.get("http://service3:5002/volume")
+    mixer = requests.post("http://service4:5003/mixer", data = spirit)
 
     db_data = Lists(spirit=spirit.text, volume = volume.text, mixer=mixer.text)
     db.session.add(db_data)

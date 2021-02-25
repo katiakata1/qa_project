@@ -1,17 +1,65 @@
 version: "3.8"
 services:
-    service1:
-        build: ./service1
-        ports:
-        - target: 5000
-          published: 5000
-          protocol: tcp
+  database:
+    build: ./service5
+    container_name: service5
+    image: mysql
+    ports: 
+    - target: 3306
+      published: 3306
+      protocol: tcp
+    volumes:
+    - type: volume
+      source: lists-volume
+      target: /var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
 
-    service2:
-        build: ./service2
-        ports:
-        - target: 5001
-          published: 5001
-          protocol: tcp
+  service1:
+    container_name: service1
+    build: ./service1
+    ports:
+    - target: 5000
+      published: 5000
+      protocol: tcp
+
+  service2:
+    container_name: service2
+    build: ./service2
+    ports:
+    - target: 5001
+      published: 5001
+      protocol: tcp
+
+  service3:
+    container_name: service3
+    build: ./service3
+    ports:
+    - target: 5002
+      published: 5002
+      protocol: tcp
+
+  service4:
+    container_name: service4
+    build: ./service4
+    ports:
+    - target: 5004
+      published: 5004
+      protocol: tcp
+
+volumes:
+  lists-volume:  
+
+
+  # nginx:
+  #   container_name: nginx
+  #   image: nginx:latest
+  #   container_name: nginx
+  #   ports:
+  #   - target: 80
+  #     published: 80
+  #     protocol: tcp
+
+
 
 
