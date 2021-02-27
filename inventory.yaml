@@ -1,0 +1,15 @@
+all:
+  children:
+    docker:
+      hosts:
+        34.82.235.173
+    manager:
+      hosts:
+        35.230.100.73
+    worker:
+      hosts:
+        34.83.17.31
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: bujanovakatia
+    ansible_ssh_private_key_file: '~/.ssh/id_rsa'

@@ -7,6 +7,8 @@ services:
     - target: 3306
       published: 3306
       protocol: tcp
+    # deploy:
+    #     replicas: 2
     volumes:
     - type: volume
       source: lists-volume
@@ -21,6 +23,8 @@ services:
     - target: 5000
       published: 5000
       protocol: tcp
+    # deploy:
+    #     replicas: 2
 
 
   service2:
@@ -30,6 +34,8 @@ services:
     - target: 5001
       published: 5001
       protocol: tcp
+    # deploy:
+    #     replicas: 2
 
   service3:
     container_name: service3
@@ -38,6 +44,8 @@ services:
     - target: 5002
       published: 5002
       protocol: tcp
+    # deploy:
+    #     replicas: 2
 
   service4:
     container_name: service4
@@ -46,6 +54,8 @@ services:
     - target: 5004
       published: 5004
       protocol: tcp
+    # deploy:
+    #   replicas: 2
 
   nginx:
     container_name: nginx
@@ -54,6 +64,8 @@ services:
     - target: 80
       published: 80
       protocol: tcp
+    # deploy:
+    #     replicas: 2
     volumes:
     - type: bind
       source: ./service6/nginx.conf
