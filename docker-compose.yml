@@ -8,8 +8,8 @@ services:
     - target: 3306
       published: 3306
       protocol: tcp
-    # deploy:
-    #     replicas: 2
+    deploy:
+        replicas: 2
     volumes:
     - type: volume
       source: lists-volume
@@ -61,22 +61,6 @@ services:
       protocol: tcp
     # deploy:
     #   replicas: 2
-
-  nginx:
-    container_name: nginx
-    image: bujanovakatia/nginx
-    ports:
-    - target: 80
-      published: 80
-      protocol: tcp
-    # deploy:
-    #     replicas: 2
-    volumes:
-    - type: bind
-      source: ./service6/nginx.conf
-      target: /etc/nginx/nginx.conf
-    depends_on:
-    - service1
 
 volumes:
   lists-volume:  

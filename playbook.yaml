@@ -1,6 +1,12 @@
 ---
 - name: install docker
   become: true
+  hosts: nginx
+  roles:
+  - docker
+  
+- name: install docker
+  become: true
   hosts: manager
   roles:
     - docker
