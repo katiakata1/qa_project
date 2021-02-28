@@ -17,7 +17,7 @@ Scope of the project includes:
 - Create an Ansible Playbook that will provision the environment that the application needs to run
 - The project must make use of a reverse proxy to make your application accessible to the user
 
-**Tools used to achieve scope requirements**
+**Tools used to achieve the scope requirements**
 
 - Kanban Board: Asana or an equivalent Kanban Board
 - Version Control: Git
@@ -27,3 +27,16 @@ Scope of the project includes:
 - Containerisation: Docker
 - Orchestration Tool: Docker Swarm
 - Reverse Proxy: NGINX
+
+## Project Deliverables
+
+The application created satisfies the following:
+- Service 1 posts requests when activated and save responces on SQLAlchemy database. <br>
+  Service 1 also displays five last entries on separate page.
+- Service 2 and Service 3 receive a request from Service 1, generate random drink and amount of the drink
+- Service 4 gets the outcome from Service 2 and send a particular mixer type configured by "if" statement <br>
+  and sends it to the Service 1 
+
+This is also dispalyed in the diagram below: 
+![flow_diagram](https://user-images.githubusercontent.com/62849876/109434134-a49e5180-7a0b-11eb-9369-7a8749c61b1d.png)
+  
