@@ -1,7 +1,6 @@
 version: "3.8"
 services:
   database:
-    # container_name: database
     build: ./service5
     image: bujanovakatia/database
     ports: 
@@ -18,49 +17,45 @@ services:
       MYSQL_ROOT_PASSWORD: root
 
   service1:
-    container_name: service1
     build: ./service1
     image: bujanovakatia/service1
     ports:
     - target: 5000
       published: 5000
       protocol: tcp
-    # deploy:
-    #     replicas: 2
+    deploy:
+        replicas: 2
 
 
   service2:
-    container_name: service2
     build: ./service2
     image: bujanovakatia/service2
     ports:
     - target: 5001
       published: 5001
       protocol: tcp
-    # deploy:
-    #     replicas: 2
+    deploy:
+        replicas: 2
 
   service3:
-    container_name: service3
     build: ./service3
     image: bujanovakatia/service3
     ports:
     - target: 5002
       published: 5002
       protocol: tcp
-    # deploy:
-    #     replicas: 2
+    deploy:
+        replicas: 2
 
   service4:
-    container_name: service4
     build: ./service4
     image: bujanovakatia/service4
     ports:
     - target: 5004
       published: 5004
       protocol: tcp
-    # deploy:
-    #   replicas: 2
+    deploy:
+      replicas: 2
 
 volumes:
   lists-volume:  
