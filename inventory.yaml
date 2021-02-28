@@ -2,16 +2,16 @@ all:
   children:
     docker:
       hosts:
-        35.247.37.192
+        10.138.0.6
     manager:
       hosts:
-        34.83.163.142
+        10.138.0.15
     worker:
       hosts:
-        34.82.196.85
+        10.138.0.17
     nginx:
       hosts: 
-        34.82.88.148
+        10.138.0.16
   vars:
     ansible_python_interpreter: /usr/bin/python3
     ansible_user: bujanovakatia

@@ -2,7 +2,7 @@ version: "3.8"
 services:
  nginx:
     container_name: nginx
-    image: bujanovakatia/nginx
+    image: nginx:alpine
     ports:
     - target: 80
       published: 80
@@ -13,5 +13,5 @@ services:
     - type: bind
       source: ./nginx.conf
       target: /etc/nginx/nginx.conf
-    depends_on:
-    - service1
+    # depends_on:
+    # - service1
