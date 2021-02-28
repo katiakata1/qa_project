@@ -11,7 +11,7 @@ all:
         10.138.0.17
     nginx:
       hosts: 
-        10.138.0.16
+        10.138.0.18
   vars:
     ansible_python_interpreter: /usr/bin/python3
     ansible_user: bujanovakatia
