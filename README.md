@@ -19,7 +19,7 @@ Scope of the project includes:
 
 **Tools used to achieve the scope requirements**
 
-- Kanban Board: Asana or an equivalent Kanban Board
+- Kanban Board: Trello Board
 - Version Control: Git
 - CI Server: Jenkins
 - Configuration Management: Ansible
@@ -39,4 +39,6 @@ The application created satisfies the following:
 
 This is also dispalyed in the diagram below: 
 ![flow_diagram](https://user-images.githubusercontent.com/62849876/109434134-a49e5180-7a0b-11eb-9369-7a8749c61b1d.png)
+
+## Project Tracking
   
