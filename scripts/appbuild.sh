@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#change permission settings
-sudo chmod 666 /var/run/docker.sock
-
 #remove all containers
 docker-compose down --rmi all
 
