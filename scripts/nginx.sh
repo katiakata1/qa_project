@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ssh 10.138.0.18 << EOF
+ssh 35.233.228.219 << EOF
 
 sudo rm -rf qa_project
 
