@@ -5,7 +5,7 @@ ssh 10.138.0.15 << EOF
 
 sudo rm -rf qa_project
 
-git clone https://github.com/katiakata1/qa_project.git
+git clone https://github.com/katiakata1/qa_project
 
 cd qa_project
 
