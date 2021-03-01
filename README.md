@@ -48,7 +48,7 @@ The application created satisfies the following:
 This is also dispalyed in the diagram below: 
 ![flow_diagram](https://user-images.githubusercontent.com/62849876/109434134-a49e5180-7a0b-11eb-9369-7a8749c61b1d.png)
 
-## Testing
+## Testing	:hammer_and_wrench:
 
 Testing was the following task after front-end desing and database structure configured and working without issues. The first step was to 
 test the code on a local machine, and update unittest package to unittest.mock for future testing purposes. This was done due to fact 
@@ -69,4 +69,39 @@ The only miss occuring and reduction in the coverage is due to the second line o
 if __name__=="__main__":
     app.run(debug=True, host='0.0.0.0')
 ```
-The test ignore the line due to certain file configuration in the repository. Otherwise, all tests are passed resulting in fully operating application. 
+The test ignores the line due to certain file configuration in the repository. Meanwhile, all tests are passed resulting in fully operating application. 
+
+## Detailed process description and technologies involved	:world_map:
+
+This project aimed to test our undertanding the whole of DevOps aspect of the application development and deployment. The most challenging part 
+was to create links between different tools and to understand the right order of their configuration. The diagram bellow represents the overal structure required from the app development, testing to deployment:
+
+![process](https://user-images.githubusercontent.com/62849876/109441902-85fd8200-7a2e-11eb-95af-a73ba391d2bc.png)
+
+The first step was to create a active connection between Visual Studio Code and Google Cloud Instance using external IP and ssh key. This simplified the code development 
+due to VSC user-friendly interface compared to GCP vim. The only disadvantage was that every time the server is stoped, new external IP is generated. Therefore, it was necessary to reset the config file in VSC every time the instance was restarted. The second step was to initialise git repo on the local machine resulting in active git control over the files created and stored at the remote repository. 
+<br>
+<br>
+The project consisted minimum of four different services initially connected via http://localhost:port. Each service has an unique port so the traffic could access the port. 
+After the application could perform a basic functionality, it was deployed with docker and further with docker-compose. At this stage, the access links had to be changed by 
+their file names rather than localhost name. It was also decided to create a database within docker container, which had the same storage capacity as any other MySql instance. 
+It was achieved by creating a Volume, which would store all entries even if all containers were be deleted. 
+<br>
+<br>
+Following step included Ansible configuration. The project was initially developed on a single VM. Additional three VMs were created for the load distribution and possible 
+risks reduction. Ansible's role was to install docker, docker swarm, allocate the swarm-manager and swarm-worker on available VMs. All VMs were created in the same region
+(Oregon, us-west1-b) resulting in their free communication via internal IPs. Connection between all of them was achieved by generating a ssh key on the master VM (where
+the code was developed) and saving the public key in all the rest VMs. Load Balancer (NGINX) was installed on a separate VM.
+<br>
+<br>
+As it mentioned before, after docker-compose.yml was running correctly, built containers were pushed to DockerHub. This step was required for future purposes, when a 
+swarm-master would pull custom images onto the new VM and deploy the application. All the services seemed to run correctly, however, when navigating to port 80, the SQLAlchemy
+error would occur meaning that some connection is missing. This issue postponed Jenkins pipeline development greatly.
+
+## Risk Assessment :mag:
+
+The following risk assessment describes possible risks associated with the project
+
+![riskassessmnt](https://user-images.githubusercontent.com/62849876/109443623-e7bfeb00-7a32-11eb-9c5d-4e4a278be5bb.png)
+
+
