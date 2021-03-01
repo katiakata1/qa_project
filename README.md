@@ -14,7 +14,7 @@ Scope of the project includes:
 - If a change is made to a code base, then Webhooks should be used so that Jenkins recreates and redeploys the changed application
 - The project must follow the service-oriented architecture described bellow 
 - The project must be deployed using containerisation and an orchestration tool
-- Create an Ansible Playbook that will provision the environment that the application needs to run
+- Create an Ansible Playbook that will provide the environment that the application needs to run
 - The project must make use of a reverse proxy to make your application accessible to the user
 
 **Tools used to achieve the scope requirements** 
@@ -30,8 +30,8 @@ Scope of the project includes:
 
 ## Project Tracking and Reached Milestones :briefcase:
 
-For the best project tracking, the Trello board was used. This step is necessary to manage the workflow and distribute the workload efficiently. The most challenging was to identifty the possible path to follow in order to complete the project due to wide range of methods available in order to achieve the same task. The Trello board is divided into initial tasks, tasks completed and tasks in progress. Also, issues
-encourtered along the development were noted as well (refer to a diagram bellow).
+For the best project tracking, the Trello board was used. This step is necessary to manage the workflow and distribute the workload efficiently. The most challenging was to identify the possible path to follow in order to complete the project due to a wide range of methods available in order to achieve the same task. The Trello board is divided into initial tasks, tasks completed and tasks in progress. Also, issues
+encountered along the development were noted as well (refer to a diagram bellow).
 
 ![trello board](https://user-images.githubusercontent.com/62849876/109438540-6eb89780-7a22-11eb-93eb-794ee1e4fe18.png)
 
@@ -39,20 +39,19 @@ encourtered along the development were noted as well (refer to a diagram bellow)
 ## Project Structure 	:page_with_curl:
 
 The application created satisfies the following:
-- Service 1 posts requests when activated and save responces on SQLAlchemy database. <br>
-  Service 1 also displays the last five entries on separate page using Jinja2 template
+- Service 1 posts request when activated and save responses on SQLAlchemy database. <br>
+  Service 1 also displays the last five entries on a separate page using the Jinja2 template
 - Service 2 and Service 3 receive a request from Service 1, generate random drink and amount of the drink
-- Service 4 gets the outcome from Service 2 and send a particular mixer type configured by "if" statement <br>
-  and sends it to the Service 1 
+- Service 4 gets the outcome from Service 2 and send a particular mixer type configured by the "if" statement and sends it to Service 1 
 
-This is also dispalyed in the diagram below: 
+This is also displayed in the diagram below: 
 ![flow_diagram](https://user-images.githubusercontent.com/62849876/109434134-a49e5180-7a0b-11eb-9369-7a8749c61b1d.png)
 
 ## Testing	:hammer_and_wrench:
 
-Testing was the following task after front-end desing and database structure configured and working without issues. The first step was to 
-test the code on a local machine, and update unittest package to unittest.mock for future testing purposes. This was done due to fact 
-that future services would be deployed in docker containers making unittest package ineffective under such conditions.
+Testing was the following task after front-end design and database structure configured and working without issues. The first step was to 
+test the code on a local machine, and update a unittest package to unittest.mock for future testing purposes. This was done due to the fact 
+that future services would be deployed in Docker containers making the unittest package ineffective under such conditions.
 
 Following screenshots of passed tests and corresponding coverages represent four services described in the Project Structure section.
 
@@ -64,37 +63,35 @@ Following screenshots of passed tests and corresponding coverages represent four
 
 ![service4_cov](https://user-images.githubusercontent.com/62849876/109439666-3c5d6900-7a27-11eb-9064-5300716e4ca7.png)
 
-The only miss occuring and reduction in the coverage is due to the second line of the following command:
+The only miss occurring and reduction in the coverage is due to the second line of the following command:
 ```
 if __name__=="__main__":
     app.run(debug=True, host='0.0.0.0')
 ```
-The test ignores the line due to certain file configuration in the repository. Meanwhile, all tests are passed resulting in fully operating application. 
+The test ignores the line due to certain file configuration in the repository. Meanwhile, all tests are passed resulting in a fully operating application. 
 
 ## Detailed process description and technologies involved	:world_map:
 
-This project aimed to test our undertanding the whole of DevOps aspect of the application development and deployment. The most challenging part 
-was to create links between different tools and to understand the right order of their configuration. The diagram bellow represents the overal structure required from the app development, testing to deployment:
+This project aimed to test our understanding the whole of the DevOps aspect of the application development and deployment. The most challenging part 
+was to create links between different tools and to understand of the right order of their configuration. The diagram below represents the overall structure required from the app development, testing to deployment:
 
 ![process](https://user-images.githubusercontent.com/62849876/109441902-85fd8200-7a2e-11eb-95af-a73ba391d2bc.png)
 
-The first step was to create a active connection between Visual Studio Code and Google Cloud Instance using external IP and ssh key. This simplified the code development 
-due to VSC user-friendly interface compared to GCP vim. The only disadvantage was that every time the server is stoped, new external IP is generated. Therefore, it was necessary to reset the config file in VSC every time the instance was restarted. The second step was to initialise git repo on the local machine resulting in active git control over the files created and stored at the remote repository. 
+The first step was to create an active connection between Visual Studio Code and Google Cloud Instance using external IP and ssh key. This simplified the code development 
+due to VSC user-friendly interface compared to GCP vim. The only disadvantage was that every time the server is stopped, new external IP is generated. Therefore, it was necessary to reset the config file in VSC every time the instance was restarted. The second step was to initialise the git repo on the local machine resulting in active git control over the files created and stored at the remote repository. 
 <br>
 <br>
-The project consisted minimum of four different services initially connected via http://localhost:port. Each service has an unique port so the traffic could access the port. 
-After the application could perform a basic functionality, it was deployed with docker and further with docker-compose. At this stage, the access links had to be changed by 
-their file names rather than localhost name. It was also decided to create a database within docker container, which had the same storage capacity as any other MySql instance. 
-It was achieved by creating a Volume, which would store all entries even if all containers were be deleted. 
+The project consisted of a minimum of four different services initially connected via http://localhost:port. Each service has a unique port so the traffic could access the port. 
+After the application could perform basic functionality, it was deployed with docker and further with docker-compose. At this stage, the access links had to be changed by their file names rather than localhost name. It was also decided to create a database within the docker container, which had the same storage capacity as any other MySql instance. 
+It was achieved by creating a Volume, which would store all entries even if all containers were being deleted. 
 <br>
 <br>
-Following step included Ansible configuration. The project was initially developed on a single VM. Additional three VMs were created for the load distribution and possible 
-risks reduction. Ansible's role was to install docker, docker swarm, allocate the swarm-manager and swarm-worker on available VMs. All VMs were created in the same region
-(Oregon, us-west1-b) resulting in their free communication via internal IPs. Connection between all of them was achieved by generating a ssh key on the master VM (where
+The following step included Ansible configuration. The project was initially developed on a single VM. Additional three VMs were created for the load distribution and possible risks reduction. Ansible's role was to install docker, docker swarm, allocate the swarm-manager and swarm-worker on available VMs. All VMs were created in the same region
+(Oregon, us-west1-b) resulting in their free communication via internal IPs. Connection between all of them was achieved by generating an ssh key on the master VM (where
 the code was developed) and saving the public key in all the rest VMs. Load Balancer (NGINX) was installed on a separate VM.
 <br>
 <br>
-As it mentioned before, after docker-compose.yml was running correctly, built containers were pushed to DockerHub. This step was required for future purposes, when a 
+As mentioned before, after docker-compose.yml was running correctly, built containers were pushed to DockerHub. This step was required for future purposes when a 
 swarm-master would pull custom images onto the new VM and deploy the application. All the services seemed to run correctly, however, when navigating to port 80, the SQLAlchemy
 error would occur meaning that some connection is missing. This issue postponed Jenkins pipeline development greatly.
 
