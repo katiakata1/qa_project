@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #login to swarmmanager VM
-ssh -i ~/.ssh/jenkins_agent_key swarm-manager << EOF
+ssh 10.138.0.15 << EOF
 
 sudo rm -rf qa_project
 
