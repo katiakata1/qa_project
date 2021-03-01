@@ -11,7 +11,7 @@ sudo pip3 install --upgrade pip
 #navigate to service1 folder, install dependencies and test it
 cd service1
 pip3 install -r requirements.txt
-python3 -m pytest --cov 
+python3 -m pytest --cov app
 
 #navigate to service2 folder
 cd ../service2
