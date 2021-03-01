@@ -11,6 +11,6 @@ cd qa_project
 
 sudo docker login
 
-sudo docker stack deploy --compose-file docker-compose.yaml stack-project
+sudo docker stack deploy --compose-file docker-compose.yml stack-project
 
 EOF
