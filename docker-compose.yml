@@ -1,20 +1,20 @@
 version: "3.8"
 services:
-  database:
-    build: ./service5
-    image: bujanovakatia/database
-    ports: 
-    - target: 3306
-      published: 3306
-      protocol: tcp
-    deploy:
-        replicas: 2
-    volumes:
-    - type: volume
-      source: lists-volume
-      target: /var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
+  # database:
+  #   build: ./service5
+  #   image: bujanovakatia/database
+  #   ports: 
+  #   - target: 3306
+  #     published: 3306
+  #     protocol: tcp
+  #   deploy:
+  #       replicas: 2
+  #   volumes:
+  #   - type: volume
+  #     source: lists-volume
+  #     target: /var/lib/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
 
   service1:
     build: ./service1

@@ -6,7 +6,11 @@ sudo rm -rf qa_project
 
 git clone https://github.com/katiakata1/qa_project
 
-cd qa_project/service6
+cd qa_project
+
+cd service6
+
+sudo docker-compose down --rmi local
 
 sudo docker-compose up -d
 
