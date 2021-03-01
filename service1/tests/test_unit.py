@@ -21,7 +21,7 @@ class TestBase(TestCase):
         # Creating a test list
         sample1 = Lists(
             spirit = "Vodka",
-            volume = "1/3",
+            volume = "0.33",
             mixer = "Orange Juice",
         )
 
@@ -55,7 +55,7 @@ class TestResponse(TestBase):
 
     def test_volume_on_page(self):
         with patch("requests.get") as e:
-                e.return_value.text = "1/3"
+                e.return_value.text = "0.33"
                 response = self.client.get(url_for("list"))
                 self.assertEqual(response.status_code, 200)
-                self.assertIn(b'1/3l of <b>Vodka</b> with <b>Orange Juice</b>', response.data)
+                self.assertIn(b'0.33l of <b>Vodka</b> with <b>Orange Juice</b>', response.data)
