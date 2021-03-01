@@ -3,9 +3,9 @@
 If you were thinking about what drink to have next - I have a perfect solution for you. <br>
 The application I created generates random a spirit type, its mixer and the size of the drink you should get.<br>
 It also displays what drinks have you already had so you could have the count of them <br>
-From Russian with love :bear:
+From Russia with love :bear:
 
-## Project Brief
+## Project Brief 	:memo:
 
 The application meets all the requirements specified by QA DevOps Bootcamp mentors and was completed in two week frame time.
 Scope of the project includes:
@@ -17,7 +17,7 @@ Scope of the project includes:
 - Create an Ansible Playbook that will provision the environment that the application needs to run
 - The project must make use of a reverse proxy to make your application accessible to the user
 
-**Tools used to achieve the scope requirements**
+**Tools used to achieve the scope requirements** 
 
 - Kanban Board: Trello Board
 - Version Control: Git
@@ -28,11 +28,19 @@ Scope of the project includes:
 - Orchestration Tool: Docker Swarm
 - Reverse Proxy: NGINX
 
-## Project Deliverables
+## Project Tracking and Reached Milestones :briefcase:
+
+For the best project tracking, the Trello board was used. This step is necessary to manage the workflow and distribute the workload efficiently. The most challenging was to identifty the possible path to follow in order to complete the project due to wide range of methods available in order to achieve the same task. The Trello board is divided into initial tasks, tasks completed and tasks in progress. Also, issues
+encourtered along the development were noted as well (refer to a diagram bellow).
+
+![trello board](https://user-images.githubusercontent.com/62849876/109438540-6eb89780-7a22-11eb-93eb-794ee1e4fe18.png)
+
+
+## Project Structure 	:page_with_curl:
 
 The application created satisfies the following:
 - Service 1 posts requests when activated and save responces on SQLAlchemy database. <br>
-  Service 1 also displays five last entries on separate page.
+  Service 1 also displays the last five entries on separate page using Jinja2 template
 - Service 2 and Service 3 receive a request from Service 1, generate random drink and amount of the drink
 - Service 4 gets the outcome from Service 2 and send a particular mixer type configured by "if" statement <br>
   and sends it to the Service 1 
@@ -40,5 +48,25 @@ The application created satisfies the following:
 This is also dispalyed in the diagram below: 
 ![flow_diagram](https://user-images.githubusercontent.com/62849876/109434134-a49e5180-7a0b-11eb-9369-7a8749c61b1d.png)
 
-## Project Tracking
-  
+## Testing
+
+Testing was the following task after front-end desing and database structure configured and working without issues. The first step was to 
+test the code on a local machine, and update unittest package to unittest.mock for future testing purposes. This was done due to fact 
+that future services would be deployed in docker containers making unittest package ineffective under such conditions.
+
+Following screenshots of passed tests and corresponding coverages represent four services described in the Project Structure section.
+
+![service1_cov](https://user-images.githubusercontent.com/62849876/109439655-2c458980-7a27-11eb-89f0-7a329408f3b2.png)
+
+![service2_cov](https://user-images.githubusercontent.com/62849876/109439661-3798b500-7a27-11eb-9dc5-562c7a4684a0.png)
+
+![service3_cov](https://user-images.githubusercontent.com/62849876/109439664-39fb0f00-7a27-11eb-909d-1e5a57914195.png)
+
+![service4_cov](https://user-images.githubusercontent.com/62849876/109439666-3c5d6900-7a27-11eb-9064-5300716e4ca7.png)
+
+The only miss occuring and reduction in the coverage is due to the second line of the following command:
+```
+if __name__=="__main__":
+    app.run(debug=True, host='0.0.0.0')
+```
+The test ignore the line due to certain file configuration in the repository. Otherwise, all tests are passed resulting in fully operating application. 
