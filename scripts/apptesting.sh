@@ -3,26 +3,28 @@
 pwd
 
 #install all dependencies
-pip3 install -r requirements.txt
+sudo update -y
+sudo upgrade -y
+sudo apt install -y python3-pip
+sudo pip3 install --upgrade pip
 
-#navigate to service1 folder
+#navigate to service1 folder, install dependencies and test it
 cd service1
-
-#comlete the testing for service1
+pip3 install -r requirements.txt
 python3 -m pytest --cov 
 
 #navigate to service2 folder
 cd ../service-2
 
-python3 -m pytest --cov 
+python3 -m pytest --cov app
 
 #navigate to service3
 cd ../service-3
-python3 -m pytest --cov
+python3 -m pytest --cov app
 
 #navigate to service4
 cd ../service-4
-python3 -m pytest --cov
+python3 -m pytest --cov app
 
 #return to the start point and deactivate the testing
 cd ..
