@@ -9,8 +9,6 @@ git clone https://github.com/katiakata1/qa_project.git
 
 cd qa_project
 
-sudo docker stack rm stack-project
-
 sudo docker login
 
 sudo docker stack deploy --compose-file docker-compose.yaml stack-project
