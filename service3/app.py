@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/volume', methods=['GET'])
 def volume():
-    volume = ['0.33', '0.5', '0.7']
+    volume = ['1/3', '1/2', '7/10']
     return Response(random.choices(volume), mimetype="text/plain")
 
 
