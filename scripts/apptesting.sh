@@ -28,4 +28,3 @@ python3 -m pytest --cov app
 
 #return to the start point and deactivate the testing
 cd ..
-deactivate
