@@ -32,7 +32,7 @@ def index():
 def list():
     spiritData = Lists.query.order_by(Lists.id.desc()).limit(5)
     return render_template('list.html', lists=spiritData)
-
+##
 
 if __name__=="__main__":
     app.run(debug=True, host='0.0.0.0')
