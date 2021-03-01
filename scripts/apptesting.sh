@@ -14,16 +14,16 @@ pip3 install -r requirements.txt
 python3 -m pytest --cov 
 
 #navigate to service2 folder
-cd ../service-2
+cd ../service2
 
 python3 -m pytest --cov app
 
 #navigate to service3
-cd ../service-3
+cd ../service3
 python3 -m pytest --cov app
 
 #navigate to service4
-cd ../service-4
+cd ../service4
 python3 -m pytest --cov app
 
 #return to the start point and deactivate the testing
