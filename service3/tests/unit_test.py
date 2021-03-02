@@ -9,6 +9,6 @@ class TestBase(TestCase):
 
 class TestVolume(TestBase):
     def test_spirit(self):
-        volume = [b'0.33', b'0.5', b'0.7']
+        volume = [b'1/3 ', b'1/2 ', b'7/10 ']
         response = self.client.get(url_for('volume'))
         self.assertIn(response.data, volume)
