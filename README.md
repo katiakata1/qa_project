@@ -95,6 +95,11 @@ As mentioned before, after docker-compose.yml was running correctly, built conta
 swarm-master would pull custom images onto the new VM and deploy the application. All the services seemed to run correctly, however, when navigating to port 80, the SQLAlchemy
 error would occur meaning that some connection is missing. This issue postponed Jenkins pipeline development greatly. The issue was resolved by crating an external MySql Instance was created and connected to the container via its external IP. 
 
+Jenkins pipeline consisted of 5 separate stages: AppTesting, Ansible, Build, Deploy and NGINX.Single key to DockerHub was saved to Jenkin, so it could complete 
+required operations. 
+![jenkins](https://user-images.githubusercontent.com/62849876/109640802-d6690280-7b48-11eb-844d-b32596efd4e0.png)
+
+
 ## Risk Assessment :mag:
 
 The following risk assessment describes possible risks associated with the project
