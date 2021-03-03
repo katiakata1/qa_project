@@ -93,7 +93,7 @@ the code was developed) and saving the public key in all the rest VMs. Load Bala
 <br>
 As mentioned before, after docker-compose.yml was running correctly, built containers were pushed to DockerHub. This step was required for future purposes when a 
 swarm-master would pull custom images onto the new VM and deploy the application. All the services seemed to run correctly, however, when navigating to port 80, the SQLAlchemy
-error would occur meaning that some connection is missing. This issue postponed Jenkins pipeline development greatly. The issue was resolved by crating an external MySql Instance was created and connected to the container via its external IP. 
+error would occur meaning that some connection is missing. This issue postponed Jenkins pipeline development greatly. The issue was resolved by creating an external MySql Instance, which was connected to the container via its external IP. 
 
 Jenkins pipeline consisted of 5 separate stages: AppTesting, Ansible, Build, Deploy and NGINX.Single key to DockerHub was saved to Jenkin, so it could complete 
 required operations. 
